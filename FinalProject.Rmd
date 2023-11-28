@@ -5,8 +5,10 @@ date: "2023-11-28"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+library(readr)
+fifa_players <- read_csv("~/FP_NicholasShuble_LukePedersen_JosephDowns/archive/fifa_players.csv")
+View(fifa_players)
 ```
 
 ## R Markdown

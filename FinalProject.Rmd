@@ -4,6 +4,8 @@ author: "Nicholas Shuble,Luke Pedersen, Joseph Downs"
 date: "2023-11-28"
 output: html_document
 ---
+Dataset Introduction:
+The dataset we have chosen is from kaggle.com. It is a dataset containing every player in the fifa video game as a case, and attributes such as height, weight, overall rating, etc.
 
 
 
@@ -38,11 +40,13 @@ ggplot(heights_heading,aes(x = height_cm, y = heading_accuracy)) +
   theme_minimal()
 ```
 
+Question:
+Is there a correlation between Player Potential and Release Clause?
 
+Background: In soccer player potential is fairly self explanatory, it just is a rating that describes what the ceiling of a players ability potentially could be. A release clause is a fee built in to a players contract that allows other clubs to buy out the players contract for said fee without having to negotiate with the players current club, assuming that the player is agreeable. 
 
-```{r}
-
-```
+Why do we care?:
+The reason that this question is interesting, is because if the player has a high potential, then you would assume that their release clause would be higher.
 
 ```{r}
 fifa_players %>%
@@ -53,6 +57,15 @@ fifa_players %>%
   labs(x = "Player potential", y = "Release Clause (euros)", title = "Potential vs Release Clause") +
   theme_minimal()
 ```
+
+Summary: based on the results from our data visualization, we can conclude that if a players potential is 70 or higher, their is an exponential rate of increase between potential and release clause, so there is a relationship between these two variables.
+
+
+Question:
+Is there a relationship between wage and overall rating, and if so how much?
+
+
+
 
 ```{r}
 fifa_players %>%

@@ -9,7 +9,7 @@ The dataset we have chosen is from kaggle.com. It is a dataset containing every 
 
 We plan to use this dataset to assess and analyze the effectiveness of ratings and statistics in the fifa-video game with real life attributes. For example, one of our questions is to see if there is any correlation between a players' height (a real life attribute) with their heading_accuracy (an attribute assigned by the game).
 
-```{r}
+```{r echo=FALSE}
 #Use tidyverse Styling Guide
 library(readr)
 # Opening the csv file
@@ -18,7 +18,7 @@ View(fifa_players)
 
 ```
 
-```{r}
+```{r echo=FALSE}
 library(dplyr)
 library(ggplot2)
 #Selecting the relevant attributes from the dataset as we do not need all of them
@@ -29,9 +29,9 @@ fifa_players <- fifa_players  %>%
 #### Question:Do taller players have better heading ratings?
 For this question, we want to examine the correlation between a players' height, in centimeters, and their heading accuracy, which is a rating from 1-100 that rates a players ability to use his head to hit the ball. In this question, we are only focusing on two attributes, the height_cm attribute and the heading_accuracy attribute. Both of these attributes are apart of our original data set.
 
-```{r}
+```{r echo=FALSE}
 #Create a wrangled data set that only includes necessary values
-heights_heading <- fifa_palyers %>% 
+heights_heading <- fifa_players %>% 
   select(height_cm,heading_accuracy)
 #Create a scatterplot
 ggplot(heights_heading,aes(x = height_cm, y = heading_accuracy)) +
@@ -54,7 +54,7 @@ In soccer player potential is fairly self explanatory, it just is a rating that 
 ###### Why do we care?:
 The reason that this question is interesting, is because if the player has a high potential, then you would assume that their release clause would be higher.
 
-```{r}
+```{r echo=FALSE}
 fifa_players %>%
  filter(potential >= 59L & potential <= 95L) %>%
  ggplot() +
@@ -69,7 +69,7 @@ Based on the results from our data visualization, we can conclude that if a play
 
 #### Question: Is there a relationship between wage and overall rating, and if so how much?
 
-```{r}
+```{r echo=FALSE}
 fifa_players %>%
  filter(overall_rating >= 60L & overall_rating <= 94L) %>%
  ggplot() +
@@ -83,13 +83,14 @@ fifa_players %>%
   ) +
   theme_minimal()
 ```
+
 ###### Summary:
 Based on our plot, it appears that there is an exponential relationship between players with a 70 or higher rating and wages.
 
 #### Question: Do left or right footed players have better finishing?
 I created a box plot as well as a table to get the information necessary to answer the question. What I found is that there is no significant difference between the finishing ability of left and right footed players. There isn't any notable disparity between the statistcis, but I think comparing the mean of left footed finishing and right footed finishing is the smartest way to answer our question. The mean finishing rating for right footed players is 44.87, and the mean finishing rating for left footed played is 46.97. Like I mentioned, these numbers are fairly similar, but we do see that left footed players have a slightly higher finishing rating on average. Something to consider is that there are around three times as many right footed players as left footed players in fifa. This is important because this may allow the estimated for right footed players to be more precise, and the estimates for left footed players more variable.
 
-```{r pressure, echo=True}
+```{r echo=FALSE}
 library(ggplot2)
 
 ggplot(fifa_players, aes(x = preferred_foot, y = finishing, fill = preferred_foot)) +
@@ -148,7 +149,7 @@ kableExtra::kable_classic()
 #### Question: At what ages do players’ transfer values decrease? 
 Through the scatter plot, we can get a good visual of the relationship between a players age, and their transfer value. We can see that, on average, a player's transfer value peaks when they are around 27 years old. This makes sense because this is when most players are expected to be in their prime. We can see that from years 17-27, player's transfer values are constantly increasing, and from ages 27-46, their transfer values are constantly decreasing. To answer the question, after 27 is when a player's transfer value begins and continues to decrease.
 
-```{r pressure, echo=True}
+```{r echo=FALSE}
 ggplot(fifa_players) +
   aes(x = age, y = value_euro) +
   geom_point(shape = "circle", size = 1.5, colour = "navy") +

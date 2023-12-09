@@ -1,15 +1,16 @@
 ---
 title: "FinalProject"
 author: "Nicholas Shuble,Luke Pedersen, Joseph Downs"
-date: "2023-11-28"
+date: "2023-12-11"
 output: html_document
 ---
-Dataset Introduction:
-The dataset we have chosen is from kaggle.com. It is a dataset containing every player in the fifa video game as a case, and attributes such as height, weight, overall rating, etc.
+### Dataset Introduction:
+The dataset we have chosen is from kaggle.com. It is a dataset containing every player in the fifa video game as a case, and attributes such as height, weight, overall rating, etc. 
 
-
+We plan to use this dataset to assess and analyze the effectiveness of ratings and statistics in the fifa-video game with real life attributes. For example, one of our questions is to see if there is any correlation between a players' height (a real life attribute) with their heading_accuracy (an attribute assigned by the game).
 
 ```{r}
+#Use tidyverse Styling Guide
 library(readr)
 # Opening the csv file
 fifa_players <- read_csv("archive/fifa_players.csv")
@@ -25,7 +26,7 @@ fifa_players <- fifa_players  %>%
   select(name, age, height_cm, weight_kgs, positions, nationality, overall_rating, potential, value_euro, wage_euro, preferred_foot, release_clause_euro, crossing, finishing, heading_accuracy, dribbling, curve, acceleration, agility, jumping, stamina)
 ```
 
-Do taller players have better heading rating?
+#### Question:Do taller players have better heading ratings?
 ```{r}
 #Create a wrangled data set that only includes necessary values
 heights_heading <- fifa_palyers %>% 
@@ -40,12 +41,12 @@ ggplot(heights_heading,aes(x = height_cm, y = heading_accuracy)) +
   theme_minimal()
 ```
 
-Question:
-Is there a correlation between Player Potential and Release Clause?
+#### Question:Is there a correlation between Player Potential and Release Clause?
 
-Background: In soccer player potential is fairly self explanatory, it just is a rating that describes what the ceiling of a players ability potentially could be. A release clause is a fee built in to a players contract that allows other clubs to buy out the players contract for said fee without having to negotiate with the players current club, assuming that the player is agreeable. 
+####### Background: 
+In soccer player potential is fairly self explanatory, it just is a rating that describes what the ceiling of a players ability potentially could be. A release clause is a fee built in to a players contract that allows other clubs to buy out the players contract for said fee without having to negotiate with the players current club, assuming that the player is agreeable. 
 
-Why do we care?:
+###### Why do we care?:
 The reason that this question is interesting, is because if the player has a high potential, then you would assume that their release clause would be higher.
 
 ```{r}
@@ -58,14 +59,10 @@ fifa_players %>%
   theme_minimal()
 ```
 
-Summary: based on the results from our data visualization, we can conclude that if a players potential is 70 or higher, their is an exponential rate of increase between potential and release clause, so there is a relationship between these two variables.
+###### Summary: 
+Based on the results from our data visualization, we can conclude that if a players potential is 70 or higher, their is an exponential rate of increase between potential and release clause, so there is a relationship between these two variables.
 
-
-Question:
-Is there a relationship between wage and overall rating, and if so how much?
-
-
-
+#### Question: Is there a relationship between wage and overall rating, and if so how much?
 
 ```{r}
 fifa_players %>%
@@ -81,9 +78,11 @@ fifa_players %>%
   ) +
   theme_minimal()
 ```
-Summary:
+###### Summary:
 Based on our plot, it appears that there is an exponential relationship between players with a 70 or higher rating and wages.
 
+#### Question: Do left or right footed players have better finishing?
+I created a box plot as well as a table to get the information necessary to answer the question. What I found is that there is no significant difference between the finishing ability of left and right footed players. There isn't any notable disparity between the statistcis, but I think comparing the mean of left footed finishing and right footed finishing is the smartest way to answer our question. The mean finishing rating for right footed players is 44.87, and the mean finishing rating for left footed played is 46.97. Like I mentioned, these numbers are fairly similar, but we do see that left footed players have a slightly higher finishing rating on average. Something to consider is that there are around three times as many right footed players as left footed players in fifa. This is important because this may allow the estimated for right footed players to be more precise, and the estimates for left footed players more variable.
 
 ```{r pressure, echo=True}
 library(ggplot2)
@@ -141,7 +140,8 @@ kableExtra::kable_classic()
 
 ```
 
-The question I am trying to answer is "Do left or right footed players have better finishing?". I created a box plot as well as a table to get the information necessary to answer the question. What I found is that there is no significant difference between the finishing ability of left and right footed players. There isn't any notable disparity between the statistcis, but I think comparing the mean of left footed finishing and right footed finishing is the smartest way to answer our question. The mean finishing rating for right footed players is 44.87, and the mean finishing rating for left footed played is 46.97. Like I mentioned, these numbers are fairly similar, but we do see that left footed players have a slightly higher finishing rating on average. Something to consider is that there are around three times as many right footed players as left footed players in fifa. This is important because this may allow the estimated for right footed players to be more precise, and the estimates for left footed players more variable.
+#### Question: At what ages do players’ transfer values decrease? 
+Through the scatter plot, we can get a good visual of the relationship between a players age, and their transfer value. We can see that, on average, a player's transfer value peaks when they are around 27 years old. This makes sense because this is when most players are expected to be in their prime. We can see that from years 17-27, player's transfer values are constantly increasing, and from ages 27-46, their transfer values are constantly decreasing. To answer the question, after 27 is when a player's transfer value begins and continues to decrease.
 
 ```{r pressure, echo=True}
 ggplot(fifa_players) +
@@ -150,4 +150,4 @@ ggplot(fifa_players) +
   geom_smooth(span = 0.75) +
   theme_minimal()
 ```
-The question I am trying to answer is "At what ages do players’ transfer values decrease?". Through the scatter plot, we can get a good visual of the relationship between a players age, and their transfer value. We can see that, on average, a player's transfer value peaks when they are around 27 years old. This makes sense because this is when most players are expected to be in their prime. We can see that from years 17-27, player's transfer values are constantly increasing, and from ages 27-46, their transfer values are constantly decreasing. To answer the question, after 27 is when a player's transfer value begins and continues to decrease.
+

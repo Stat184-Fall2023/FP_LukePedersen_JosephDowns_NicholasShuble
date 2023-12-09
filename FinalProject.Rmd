@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-change
+
 ```{r}
 library(readr)
 # Opening the csv file
@@ -33,9 +33,16 @@ When you click the **Knit** button a document will be generated that includes bo
 
 ```
 
-## Including Plots
+```{r}
+fifa_players %>%
+ filter(potential >= 59L & potential <= 95L) %>%
+ ggplot() +
+  aes(x = potential, y = release_clause_euro) +
+  geom_line(colour = "#111C46") +
+  labs(x = "Player potential", y = "Release Clause (euros)") +
+  theme_minimal()
+```
 
-You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
 plot(pressure)

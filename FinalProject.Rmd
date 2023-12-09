@@ -53,7 +53,7 @@ fifa_players %>%
  filter(potential >= 59L & potential <= 95L) %>%
  ggplot() +
   aes(x = potential, y = release_clause_euro) +
-  geom_line(colour = "#111C46") +
+  geom_line(colour = "black") +
   labs(x = "Player potential", y = "Release Clause (euros)", title = "Potential vs Release Clause") +
   theme_minimal()
 ```
@@ -72,7 +72,7 @@ fifa_players %>%
  filter(overall_rating >= 60L & overall_rating <= 94L) %>%
  ggplot() +
   aes(x = overall_rating, y = wage_euro) +
-  geom_point(shape = "circle", size = 0.5, colour = "#B22222") +
+  geom_point(shape = "circle", size = 0.5, colour = "maroon") +
   geom_smooth(span = 0.75) +
   labs(
     x = "Wage (euros)",
@@ -145,7 +145,7 @@ The question I am trying to answer is "Do left or right footed players have bett
 ```{r pressure, echo=True}
 ggplot(fifa_players) +
   aes(x = age, y = value_euro) +
-  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  geom_point(shape = "circle", size = 1.5, colour = "navy") +
   geom_smooth(span = 0.75) +
   theme_minimal()
 ```

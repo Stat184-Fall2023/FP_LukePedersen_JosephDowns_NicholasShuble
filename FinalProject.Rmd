@@ -23,6 +23,10 @@ fifa_players <- fifa_players  %>%
   select(name, age, height_cm, weight_kgs, positions, nationality, overall_rating, potential, value_euro, wage_euro, preferred_foot, release_clause_euro, crossing, finishing, heading_accuracy, dribbling, curve, acceleration, agility, jumping, stamina,)
 ```
 
+```{r}
+#Do taller players have better heading rating?
+```
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.

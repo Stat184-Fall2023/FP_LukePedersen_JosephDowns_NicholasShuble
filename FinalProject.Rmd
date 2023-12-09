@@ -117,4 +117,13 @@ formatted_table <- kable(summaryTable, format = "html") %>%
 kable_styling(bootstrap_options = "striped")
 ```
 
+The question I am trying to answer is "Do left or right footed players have better finishing?". I created a box plot as well as a table to get the information necessary to answer the question. What I found is that there is no significant difference between the finishing ability of left and right footed players. There isn't any notable disparity between the statistcis, but I think comparing the mean of left footed finishing and right footed finishing is the smartest way to answer our question. The mean finishing rating for right footed players is 44.87, and the mean finishing rating for left footed played is 46.97. Like I mentioned, these numbers are fairly similar, but we do see that left footed players have a slightly higher finishing rating on average. Something to consider is that there are around three times as many right footed players as left footed players in fifa. This is important because this may allow the estimated for right footed players to be more precise, and the estimates for left footed players more variable.
 
+```{r pressure, echo=True}
+ggplot(fifa_players) +
+  aes(x = age, y = value_euro) +
+  geom_point(shape = "circle", size = 1.5, colour = "#112446") +
+  geom_smooth(span = 0.75) +
+  theme_minimal()
+```
+The question I am trying to answer is "At what ages do players’ transfer values decrease?". Through the scatter plot, we can get a good visual of the relationship between a players age, and their transfer value. We can see that, on average, a player's transfer value peaks when they are around 27 years old. This makes sense because this is when most players are expected to be in their prime. We can see that from years 17-27, player's transfer values are constantly increasing, and from ages 27-46, their transfer values are constantly decreasing. To answer the question, after 27 is when a player's transfer value begins and continues to decrease.

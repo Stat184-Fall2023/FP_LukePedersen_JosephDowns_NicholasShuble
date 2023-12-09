@@ -4,6 +4,9 @@ author: "Nicholas Shuble,Luke Pedersen, Joseph Downs"
 date: "2023-11-28"
 output: html_document
 ---
+Dataset Introduction:
+The dataset we have chosen is from kaggle.com. It is a dataset containing every player in the fifa video game as a case, and attributes such as height, weight, overall rating, etc.
+
 
 
 
@@ -40,9 +43,7 @@ ggplot(heights_heading,aes(x = height_cm, y = heading_accuracy)) +
 
 
 
-```{r}
 
-```
 
 ```{r}
 fifa_players %>%
@@ -115,6 +116,7 @@ finishing_std=sd(finishing))
 formatted_table <- kable(summaryTable, format = "html") %>%
 
 kable_styling(bootstrap_options = "striped")
+View
 ```
 
 

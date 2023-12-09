@@ -75,13 +75,14 @@ fifa_players %>%
   geom_point(shape = "circle", size = 0.5, colour = "maroon") +
   geom_smooth(span = 0.75) +
   labs(
-    x = "Wage (euros)",
-    y = "Overall Rating",
-    title = "Wage vs Overall Rating"
+    x = "Overall Rating",
+    y = "Wage (euros)",
+    title = "Overall Rating vs Wage"
   ) +
   theme_minimal()
 ```
-
+Summary:
+Based on our plot, it appears that there is an exponential relationship between players with a 70 or higher rating and wages.
 
 
 ```{r pressure, echo=True}

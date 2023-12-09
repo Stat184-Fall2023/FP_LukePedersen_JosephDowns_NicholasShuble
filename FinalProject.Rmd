@@ -4,6 +4,8 @@ author: "Nicholas Shuble,Luke Pedersen, Joseph Downs"
 date: "2023-11-28"
 output: html_document
 ---
+Dataset Introduction:
+The dataset we have chosen is from kaggle.com. It is a dataset containing every player in the fifa video game as a case, and attributes such as height, weight, overall rating, etc.
 
 
 
@@ -38,11 +40,13 @@ ggplot(heights_heading,aes(x = height_cm, y = heading_accuracy)) +
   theme_minimal()
 ```
 
+Question:
+Is there a correlation between Player Potential and Release Clause?
 
+Background: In soccer player potential is fairly self explanatory, it just is a rating that describes what the ceiling of a players ability potentially could be. A release clause is a fee built in to a players contract that allows other clubs to buy out the players contract for said fee without having to negotiate with the players current club, assuming that the player is agreeable. 
 
-```{r}
-
-```
+Why do we care?:
+The reason that this question is interesting, is because if the player has a high potential, then you would assume that their release clause would be higher.
 
 ```{r}
 fifa_players %>%
@@ -53,6 +57,15 @@ fifa_players %>%
   labs(x = "Player potential", y = "Release Clause (euros)", title = "Potential vs Release Clause") +
   theme_minimal()
 ```
+
+Summary: based on the results from our data visualization, we can conclude that if a players potential is 70 or higher, their is an exponential rate of increase between potential and release clause, so there is a relationship between these two variables.
+
+
+Question:
+Is there a relationship between wage and overall rating, and if so how much?
+
+
+
 
 ```{r}
 fifa_players %>%
@@ -96,25 +109,35 @@ summaryTable <- fifa_players %>%
 
 group_by(preferred_foot) %>%
 
-summarise(count=n(),
+summarize(count = n(),
 
-finishing_min=min(finishing),
+finishing_min = min(finishing,na.rm = TRUE),
 
-finishing_q1=quantile(finishing, probs=.25),
+finishing_q1 = quantile(finishing, probs = .25,na.rm = TRUE),
 
-finishing_median=median(finishing),
+finishing_median = median(finishing,na.rm = TRUE),
 
-finishing_q3=quantile(finishing, probs=.75),
+finishing_q3 = quantile(finishing, probs = .75,na.rm = TRUE),
 
-finishing_max=max(finishing),
+finishing_max = max(finishing,na.rm = TRUE),
 
-finishing_mean=mean(finishing),
+finishing_mean = mean(finishing,na.rm = TRUE),
 
-finishing_std=sd(finishing))
+finishing_std = sd(finishing,na.rm = TRUE))
+#Create the cleaned table
+summaryTable %>%
+  kable(
+    digits = 2,
+    format.args = list(big.mark = ","),
+    caption = "Summary Statistics for Preferred Foot-Finishing",
+    col.names = c('preferred_foot','count',"finishing_min",'finishing_q1','finishing_median',
+                  'finishing_q3','finishing_max','finishing_mean','finishing_std'),
+    align = c("l", rep("c", 8)),
+    booktabs = TRUE
+  ) %>%
+kableExtra::kable_classic()
 
-formatted_table <- kable(summaryTable, format = "html") %>%
 
-kable_styling(bootstrap_options = "striped")
 ```
 
 The question I am trying to answer is "Do left or right footed players have better finishing?". I created a box plot as well as a table to get the information necessary to answer the question. What I found is that there is no significant difference between the finishing ability of left and right footed players. There isn't any notable disparity between the statistcis, but I think comparing the mean of left footed finishing and right footed finishing is the smartest way to answer our question. The mean finishing rating for right footed players is 44.87, and the mean finishing rating for left footed played is 46.97. Like I mentioned, these numbers are fairly similar, but we do see that left footed players have a slightly higher finishing rating on average. Something to consider is that there are around three times as many right footed players as left footed players in fifa. This is important because this may allow the estimated for right footed players to be more precise, and the estimates for left footed players more variable.

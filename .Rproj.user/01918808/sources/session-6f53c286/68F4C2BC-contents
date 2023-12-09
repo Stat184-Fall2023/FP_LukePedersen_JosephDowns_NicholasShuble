@@ -61,8 +61,6 @@ fifa_players %>%
 
 
 ```{r pressure, echo=True}
-library(esquisse)
-esquisse::esquisser(data = fifa_players, viewer = "browser")
 library(ggplot2)
 
 ggplot(fifa_players, aes(x = preferred_foot, y = finishing, fill = preferred_foot)) +

@@ -18,13 +18,24 @@ View(fifa_players)
 ```{r}
 library(dplyr)
 library(ggplot2)
-#Selecting the relevant variables from the dataset
+#Selecting the relevant attributes from the dataset as we do not need all of them
 fifa_players <- fifa_players  %>%
-  select(name, age, height_cm, weight_kgs, positions, nationality, overall_rating, potential, value_euro, wage_euro, preferred_foot, release_clause_euro, crossing, finishing, heading_accuracy, dribbling, curve, acceleration, agility, jumping, stamina,)
+  select(name, age, height_cm, weight_kgs, positions, nationality, overall_rating, potential, value_euro, wage_euro, preferred_foot, release_clause_euro, crossing, finishing, heading_accuracy, dribbling, curve, acceleration, agility, jumping, stamina)
 ```
 
+Do taller players have better heading rating?
 ```{r}
-#Do taller players have better heading rating?
+#Create a wrangled data set that only includes necessary values
+heights_heading <- fifa_palyers %>% 
+  select(height_cm,heading_accuracy)
+#Create a scatterplot
+ggplot(heights_heading,aes(x = height_cm, y = heading_accuracy)) +
+  geom_point(size = 0.7,color = 'red') +
+#Create a line of best fit for the scatterplot
+  stat_smooth(method = "lm",
+        col = "black", se = FALSE, size = 1) +
+  labs(title = paste("Height vs. Heading Accuracy")) +
+  theme_minimal()
 ```
 
 

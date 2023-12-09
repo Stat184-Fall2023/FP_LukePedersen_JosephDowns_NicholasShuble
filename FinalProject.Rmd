@@ -27,6 +27,8 @@ fifa_players <- fifa_players  %>%
 ```
 
 #### Question:Do taller players have better heading ratings?
+For this question, we want to examine the correlation between a players' height, in centimeters, and their heading accuracy, which is a rating from 1-100 that rates a players ability to use his head to hit the ball. In this question, we are only focusing on two attributes, the height_cm attribute and the heading_accuracy attribute. Both of these attributes are apart of our original data set.
+
 ```{r}
 #Create a wrangled data set that only includes necessary values
 heights_heading <- fifa_palyers %>% 
@@ -40,6 +42,9 @@ ggplot(heights_heading,aes(x = height_cm, y = heading_accuracy)) +
   labs(title = paste("Height vs. Heading Accuracy")) +
   theme_minimal()
 ```
+
+###### Summary:
+For this dataset we took two attributes, height_cm and heading_accuracy and compared them using ggplot2 to create a scatterplot. Because of the large amount of points on the scatterplot we also created a line of best fit in order to show if there was any relationship. The line of best fit, in black, is almost and entirely flat line that does very slightly slop downward from left to right. This downward slope would indicate that shorter players have higher heading ability. However, it is unreasonable to make this conclusion becuase the downward slope is so small it is basically negatable. This would indicate that there is no clear relationship between a players height and his heading ability, meaning that a short player can just as easily have as good of a heading ability as a players that much taller than him.
 
 #### Question:Is there a correlation between Player Potential and Release Clause?
 

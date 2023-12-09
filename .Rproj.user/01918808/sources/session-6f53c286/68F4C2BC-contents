@@ -5,7 +5,7 @@ date: "2023-11-28"
 output: html_document
 ---
 
-comment
+
 
 ```{r}
 library(readr)
@@ -23,19 +23,42 @@ fifa_players <- fifa_players  %>%
   select(name, age, height_cm, weight_kgs, positions, nationality, overall_rating, potential, value_euro, wage_euro, preferred_foot, release_clause_euro, crossing, finishing, heading_accuracy, dribbling, curve, acceleration, agility, jumping, stamina,)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+#Do taller players have better heading rating?
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+
+```{r}
+
+```
+
+```{r}
+fifa_players %>%
+ filter(potential >= 59L & potential <= 95L) %>%
+ ggplot() +
+  aes(x = potential, y = release_clause_euro) +
+  geom_line(colour = "#111C46") +
+  labs(x = "Player potential", y = "Release Clause (euros)", title = "Potential vs Release Clause") +
+  theme_minimal()
+```
+
+```{r}
+fifa_players %>%
+ filter(overall_rating >= 60L & overall_rating <= 94L) %>%
+ ggplot() +
+  aes(x = overall_rating, y = wage_euro) +
+  geom_point(shape = "circle", size = 0.5, colour = "#B22222") +
+  geom_smooth(span = 0.75) +
+  labs(
+    x = "Wage (euros)",
+    y = "Overall Rating",
+    title = "Wage vs Overall Rating"
+  ) +
+  theme_minimal()
+```
+
+
 
 ```{r pressure, echo=True}
 library(esquisse)
@@ -85,4 +108,4 @@ formatted_table <- kable(summaryTable, format = "html") %>%
 kable_styling(bootstrap_options = "striped")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
